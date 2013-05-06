@@ -54,17 +54,48 @@ public class Tree
 		{
 			return contains(node.right, targetElement);
 		}
-	}
-	
-	/*
-	public String toString()
+	}//contains
+	public void insert(int target)
 	{
-		TreeNode cursor;
-		if(this.root != null)
+		if(this.root == null)
 		{
-			cursor = root.left();
+			this.root = new TreeNode(target);
+			return;//same as nothing to retrun
+		}
+		TreeNode node = this.root;
+		while(true)
+		{
+			if(target <= node.value)
+			{//target is on the left side of the tree since target is less than value of node
+				if(node.left != null)
+				{//if node left is not null, indicates there are already some children
+				//Look for null space which is located on the left side of grand-children 
+					node = node.left;
+				}
+				else
+				{//if node.left == null indicates there is a space to set a child node.
+				//so put left side of the node a new node.
+					node.left =new TreeNode(target);
+					return ;
+				}
+			}
+			else
+			{//(terget >= node.value)
+				//target is on the right side of the tree since target is Greater than 
+				//value of node
+				if(node.right != null)
+				{
+					node = node.right;
+				}
+				else
+				{
+					node = new TreeNode(target);
+					return;
+				}
+			}
 		}
 	}
-	*/
+	
+
 
 }
